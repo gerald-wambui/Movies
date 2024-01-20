@@ -1,16 +1,18 @@
 plugins {
 	id("com.android.application")
 	id("org.jetbrains.kotlin.android")
+	id("com.google.dagger.hilt.android")
+	id("kotlin-kapt")
 }
 
 android {
 	namespace = "com.jaguh.movies"
-	compileSdk = 33
+	compileSdk = 34
 
 	defaultConfig {
 		applicationId = "com.jaguh.movies"
 		minSdk = 21
-		targetSdk = 33
+		targetSdk = 34
 		versionCode = 1
 		versionName = "1.0"
 
