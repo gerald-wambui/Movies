@@ -23,7 +23,7 @@ object AppModule {
 		level = HttpLoggingInterceptor.Level.BODY
 	}
 
-	private val client: OkHttpClient = OkHttpClient().Builder()
+	private val client: OkHttpClient = OkHttpClient.Builder()
 		.addInterceptor(interceptor)
 		.build()
 
