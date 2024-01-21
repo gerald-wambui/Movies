@@ -2,6 +2,7 @@ package com.jaguh.movies.moviesList.data.repository
 
 import com.jaguh.movies.moviesList.data.local.movie.MovieDatabase
 import com.jaguh.movies.moviesList.data.mappers.toMovie
+import com.jaguh.movies.moviesList.data.mappers.toMovieEntity
 import com.jaguh.movies.moviesList.data.remote.MovieApi
 import com.jaguh.movies.moviesList.domain.model.Movie
 import com.jaguh.movies.moviesList.domain.repository.MovieListRepository
@@ -57,7 +58,18 @@ class MovieListRepositoryImpl  @Inject constructor(
 			}
 
 
-			val movieEntities = movieListFromApi.
+			val movieEntities = movieListFromApi.results.let {
+				it.map { movieDto ->
+					movieDto.toMovieEntity(category)
+				}
+			}
+
+			movieDatabase.movieDao.upsertMovieList(movieEntities)
+
+			emit(Resource.Success(
+				movieEntities.map { it.toMovie(category) }
+			))
+			emit(Resource.Loading(false))
 
 		}
 	}
