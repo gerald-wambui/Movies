@@ -56,7 +56,9 @@ fun MovieEntity.toMovie(
 		category = category,
 
 		genre_ids = try {
-			genre_ids.split(",")
+			genre_ids.split(",").map { it.toInt() }
+		} catch (e: Exception) {
+			listOf(-1,-2)
 		}
 	)
 }
