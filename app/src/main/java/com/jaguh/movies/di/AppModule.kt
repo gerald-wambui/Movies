@@ -1,5 +1,8 @@
 package com.jaguh.movies.di
 
+import android.app.Application
+import androidx.room.Room
+import com.jaguh.movies.moviesList.data.local.movie.MovieDatabase
 import com.jaguh.movies.moviesList.data.remote.MovieApi
 import dagger.Module
 import dagger.Provides
@@ -34,4 +37,29 @@ object AppModule {
 			.build()
 			.create(MovieApi::class.java)
 	}
+
+
+	@Provides
+	@Singleton
+	fun providesMovieDatabase(app: Application): MovieDatabase {
+		return Room.databaseBuilder(
+			app,
+			MovieDatabase::class.java,
+			"moviedb.db"
+		).build()
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
