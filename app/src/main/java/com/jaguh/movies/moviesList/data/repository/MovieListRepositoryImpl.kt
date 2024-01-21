@@ -28,7 +28,7 @@ class MovieListRepositoryImpl  @Inject constructor(
 
 			val localMovieList = movieDatabase.movieDao.getMovieListByCategory(category)
 
-			val shouldLoadLocalMovie = localMovieList.isEmpty() && !forceFetchFromRemote
+			val shouldLoadLocalMovie = localMovieList.isNotEmpty() && !forceFetchFromRemote
 
 			if (shouldLoadLocalMovie) {
 				emit(Resource.Success(
