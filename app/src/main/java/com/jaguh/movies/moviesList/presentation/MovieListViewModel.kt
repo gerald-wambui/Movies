@@ -53,6 +53,48 @@ class MovieListViewModel @Inject constructor(
 
 			movieListRepository.getMovieList(
 				forceFetchFromRemote,
+				Category.UPCOMING,
+				movieListState.value.upcomingMovieListPage
+			).collectLatest { result ->
+
+				when (result) {
+
+					is Resource.Error -> {
+						_movieListState.update {
+							it.copy(isLoading = false)
+						}
+					}
+
+					is Resource.Success -> {
+						result.data?.let {upcomingList ->
+							_movieListState.update {
+								it.copy(
+									upcomingMovieList = movieListState.value.upcomingMovieList
+									+upcomingList.shuffled(),
+									upcomingMovieListPage = movieListState.value.upcomingMovieListPage + 1
+								)
+							}
+						}
+					}
+
+					is Resource.Loading -> {
+						_movieListState.update {
+							it.copy(isLoading = result.isLoading)
+						}
+					}
+				}
+			}
+		}
+	}
+
+	private fun getPopularMovieList(forceFetchFromRemote: Boolean) {
+		viewModelScope.launch {
+			_movieListState.update {
+				it.copy(isLoading = true)
+			}
+
+			movieListRepository.getMovieList(
+				forceFetchFromRemote,
 				Category.POPULAR,
 				movieListState.value.popularMovieListPage
 			).collectLatest { result ->
@@ -60,20 +102,30 @@ class MovieListViewModel @Inject constructor(
 				when (result) {
 
 					is Resource.Error -> {
-
+						_movieListState.update {
+							it.copy(isLoading = false)
+						}
 					}
 
 					is Resource.Success -> {
-
+						result.data?.let {popularList ->
+							_movieListState.update {
+								it.copy(
+									popularMovieList = movieListState.value.popularMovieList
+											+popularList.shuffled(),
+									popularMovieListPage = movieListState.value.popularMovieListPage + 1
+								)
+							}
+						}
 					}
 
-					is Resource.Loading -> TODO()
+					is Resource.Loading -> {
+						_movieListState.update {
+							it.copy(isLoading = result.isLoading)
+						}
+					}
 				}
 			}
 		}
-	}
-
-	private fun getPopularMovieList(forceFetchFromRemote: Boolean) {
-		TODO("Not yet implemented")
 	}
 }
