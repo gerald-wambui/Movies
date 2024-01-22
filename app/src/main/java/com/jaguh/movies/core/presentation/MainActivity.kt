@@ -46,7 +46,7 @@ class MainActivity : ComponentActivity() {
 						startDestination = Screen.Home.rout
 					){
 						composable(Screen.Home.rout){
-							HomeScreen()
+							HomeScreen(navController)
 						}
 
 						composable(Screen.Details.rout + "/{movieId}",
