@@ -1,4 +1,4 @@
-package com.jaguh.movies
+package com.jaguh.movies.core.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,6 +10,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.jaguh.movies.moviesList.presentation.MovieListViewModel
+import com.jaguh.movies.moviesList.util.Screen
 import com.jaguh.movies.ui.theme.MoviesTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,6 +31,17 @@ class MainActivity : ComponentActivity() {
 					color = MaterialTheme.colorScheme.background
 				) {
 
+					//val movieListViewModel = hiltViewModel<MovieListViewModel>()
+
+					val navController = rememberNavController()
+					NavHost(
+						navController = navController,
+						startDestination = Screen.Home.rout
+					){
+						composable(Screen.Home.rout){
+
+						}
+					}
 				}
 			}
 		}
