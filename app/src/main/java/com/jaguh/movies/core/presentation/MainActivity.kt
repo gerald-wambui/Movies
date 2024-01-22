@@ -8,7 +8,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavType
@@ -16,6 +18,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.google.accompanist.systemuicontroller.SystemUiController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.jaguh.movies.moviesList.presentation.MovieListViewModel
 import com.jaguh.movies.moviesList.util.Screen
 import com.jaguh.movies.ui.theme.MoviesTheme
@@ -27,6 +31,7 @@ class MainActivity : ComponentActivity() {
 		super.onCreate(savedInstanceState)
 		setContent {
 			MoviesTheme {
+				SetBarColor(color = MaterialTheme.colorScheme.inverseOnSurface)
 				// A surface container using the 'background' color from the theme
 				Surface(
 					modifier = Modifier.fillMaxSize(),
@@ -56,5 +61,17 @@ class MainActivity : ComponentActivity() {
 			}
 		}
 	}
+
+
+	@Composable
+	private fun SetBarColor(color: Color) {
+		val systemUiController = rememberSystemUiController()
+		LaunchedEffect(key1 = color){
+			systemUiController.setSystemBarsColor(color)
+		}
+	}
+
+
+
 }
 
