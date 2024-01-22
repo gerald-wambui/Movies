@@ -1,4 +1,8 @@
 package com.jaguh.movies.core.presentation
 
-class HomeScreen {
+import androidx.compose.runtime.Composable
+
+
+@Composable
+fun HomeScreen() {
 }

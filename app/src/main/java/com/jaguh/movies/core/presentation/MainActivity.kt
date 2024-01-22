@@ -11,9 +11,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.jaguh.movies.moviesList.presentation.MovieListViewModel
 import com.jaguh.movies.moviesList.util.Screen
 import com.jaguh.movies.ui.theme.MoviesTheme
@@ -39,7 +41,15 @@ class MainActivity : ComponentActivity() {
 						startDestination = Screen.Home.rout
 					){
 						composable(Screen.Home.rout){
+							HomeScreen()
+						}
 
+						composable(Screen.Details.rout + "/{movieId}",
+							arguments =  listOf(
+								navArgument("movieId") {type = NavType.IntType}
+							)
+							){backStackEntry ->
+							//DetailsScreen(backStackEntry)
 						}
 					}
 				}
