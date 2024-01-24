@@ -14,6 +14,7 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableIntStateOf
@@ -40,10 +41,16 @@ fun HomeScreen(navController: NavHostController) {
 
 	Scaffold(
 		bottomBar = {
-
+					BottomNavigationBar(
+						bottomNavController = bottomNavController,
+						onEvent = movieListViewModel::onEvent
+					)
 		},
 		topBar = {
-
+			TopAppBar(title = {
+				title
+			}
+			)
 		}
 	) {
 		Box (
@@ -92,6 +99,12 @@ fun BottomNavigationBar(
 								onEvent(MovieListUiEvent.Navigate)
 								bottomNavController.popBackStack()
 								bottomNavController.navigate(Screen.PopularMovieList.rout)
+							}
+
+							1 -> {
+								onEvent(MovieListUiEvent.Navigate)
+								bottomNavController.popBackStack()
+								bottomNavController.navigate(Screen.UpcomingMovieList.rout)
 							}
 						}
 					},
