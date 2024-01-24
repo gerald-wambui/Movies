@@ -1,11 +1,15 @@
 package com.jaguh.movies.core.presentation
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Movie
 import androidx.compose.material.icons.rounded.Upcoming
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -68,6 +72,18 @@ fun BottomNavigationBar(
 	val selected = rememberSaveable {
 		mutableIntStateOf(0)
 
+	}
+
+	NavigationBar {
+		Row (
+			modifier = Modifier.background(MaterialTheme.colorScheme.inverseOnSurface)
+		){
+			items.forEachIndexed { index, bottomItem ->
+				NavigationBar {
+
+				}
+			}
+		}
 	}
 }
 
