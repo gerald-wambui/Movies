@@ -15,13 +15,16 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -58,7 +61,11 @@ fun HomeScreen(navController: NavHostController) {
 						stringResource(R.string.upcoming_movies),
 						fontSize = 2.sp
 					)
-				}
+				},
+				modifier = Modifier.shadow(2.dp),
+				colors = TopAppBarDefaults.smallTopAppBarColors(
+
+				)
 			)
 		}
 	) {
