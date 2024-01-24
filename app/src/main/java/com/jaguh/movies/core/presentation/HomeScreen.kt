@@ -81,10 +81,10 @@ fun HomeScreen(navController: NavHostController) {
 				startDestination = Screen.PopularMovieList.rout
 			){
 				composable(Screen.PopularMovieList.rout) {
-					PopularMovieScreen()
+//					PopularMovieScreen()
 				}
 				composable(Screen.PopularMovieList.rout) {
-					PopularMovieScreen()
+//					PopularMovieScreen()
 				}
 			}
 		}
