@@ -13,6 +13,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableIntStateOf
@@ -87,8 +88,15 @@ fun BottomNavigationBar(
 					icon = {
 						Icon(
 							imageVector = bottomItem.icon,
-							contentDescription = bottomItem.title
+							contentDescription = bottomItem.title,
+							tint = MaterialTheme.colorScheme.onBackground
 						)
+					},
+					label = {
+						Text(
+							text = bottomItem.title,
+							color = MaterialTheme.colorScheme.onBackground
+							)
 					}
 				)
 			}
