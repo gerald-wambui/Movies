@@ -26,6 +26,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.jaguh.movies.moviesList.presentation.MovieListUiEvent
 import com.jaguh.movies.moviesList.presentation.MovieListViewModel
+import com.jaguh.movies.moviesList.util.Screen
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -84,7 +85,16 @@ fun BottomNavigationBar(
 			items.forEachIndexed { index, bottomItem ->
 				NavigationBarItem(
 					selected = selected.intValue == index,
-					onClick = { },
+					onClick = {
+							  selected.intValue = index
+						when(selected.intValue) {
+							0 -> {
+								onEvent(MovieListUiEvent.Navigate)
+								bottomNavController.popBackStack()
+								bottomNavController.navigate(Screen.PopularMovieList.rout)
+							}
+						}
+					},
 					icon = {
 						Icon(
 							imageVector = bottomItem.icon,
