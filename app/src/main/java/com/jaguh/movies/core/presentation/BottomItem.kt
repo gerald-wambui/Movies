@@ -1,3 +1,8 @@
 package com.jaguh.movies.core.presentation
 
-data class BottomItem()
+import androidx.compose.ui.graphics.vector.ImageVector
+
+data class BottomItem(
+	val title: String,
+	val icon: ImageVector
+)
