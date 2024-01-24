@@ -9,6 +9,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -62,6 +64,11 @@ fun BottomNavigationBar(
 			icon = Icons.Rounded.Upcoming
 		)
 	)
+
+	val selected = rememberSaveable {
+		mutableIntStateOf(0)
+
+	}
 }
 
 
