@@ -3,6 +3,7 @@ package com.jaguh.movies.core.presentation
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Movie
@@ -29,6 +30,8 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.jaguh.movies.R
 import com.jaguh.movies.moviesList.presentation.MovieListUiEvent
@@ -70,9 +73,20 @@ fun HomeScreen(navController: NavHostController) {
 		}
 	) {
 		Box (
-			modifier = Modifier.padding(it)
+			modifier = Modifier
+				.fillMaxSize()
+				.padding(it)
 		){
-
+			NavHost(navController = bottomNavController,
+				startDestination = Screen.PopularMovieList.rout
+			){
+				composable(Screen.PopularMovieList.rout) {
+					PopularMovieScreen()
+				}
+				composable(Screen.PopularMovieList.rout) {
+					PopularMovieScreen()
+				}
+			}
 		}
 	}
 
