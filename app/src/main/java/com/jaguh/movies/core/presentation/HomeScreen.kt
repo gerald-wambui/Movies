@@ -21,10 +21,13 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.jaguh.movies.R
 import com.jaguh.movies.moviesList.presentation.MovieListUiEvent
 import com.jaguh.movies.moviesList.presentation.MovieListViewModel
 import com.jaguh.movies.moviesList.util.Screen
@@ -47,9 +50,15 @@ fun HomeScreen(navController: NavHostController) {
 					)
 		},
 		topBar = {
-			TopAppBar(title = {
-				title
-			}
+			TopAppBar(
+				title = {
+					Text(text = if (movieState.isCurrentPopularScreen)
+						stringResource(R.string.popular_movies)
+						else
+						stringResource(R.string.upcoming_movies),
+						fontSize = 2.sp
+					)
+				}
 			)
 		}
 	) {
@@ -71,11 +80,11 @@ fun BottomNavigationBar(
 
 	val items = listOf(
 		BottomItem(
-			title = "Popular",
+			title = stringResource(R.string.popular),
 			icon = Icons.Rounded.Movie
 		),
 		BottomItem(
-			title = "Upcoming",
+			title = stringResource(R.string.upcoming),
 			icon = Icons.Rounded.Upcoming
 		)
 	)
