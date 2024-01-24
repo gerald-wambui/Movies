@@ -158,10 +158,6 @@ fun BottomNavigationBar(
 }
 
 
-data class BottomItem(
-	val title: String,
-	val icon: ImageVector
-)
 
 
 
