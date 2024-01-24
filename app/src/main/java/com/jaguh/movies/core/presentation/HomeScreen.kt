@@ -64,7 +64,7 @@ fun HomeScreen(navController: NavHostController) {
 				},
 				modifier = Modifier.shadow(2.dp),
 				colors = TopAppBarDefaults.smallTopAppBarColors(
-
+					MaterialTheme.colorScheme.inverseOnSurface
 				)
 			)
 		}
