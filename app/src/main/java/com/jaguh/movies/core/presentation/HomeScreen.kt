@@ -8,8 +8,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Movie
 import androidx.compose.material.icons.rounded.Upcoming
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -79,9 +81,16 @@ fun BottomNavigationBar(
 			modifier = Modifier.background(MaterialTheme.colorScheme.inverseOnSurface)
 		){
 			items.forEachIndexed { index, bottomItem ->
-				NavigationBar {
-
-				}
+				NavigationBarItem(
+					selected = selected.intValue == index,
+					onClick = { },
+					icon = {
+						Icon(
+							imageVector = bottomItem.icon,
+							contentDescription = bottomItem.title
+						)
+					}
+				)
 			}
 		}
 	}
