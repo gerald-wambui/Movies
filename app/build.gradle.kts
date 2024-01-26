@@ -73,7 +73,6 @@ dependencies {
 	implementation("androidx.navigation:navigation-compose:2.7.6")
 
 	implementation("androidx.room:room-ktx:2.6.1")
-	//kapt("androidx.room:room-compiler:2.6.1")
 	ksp("androidx.room:room-compiler:2.6.1")
 	implementation("androidx.room:room-paging:2.6.1")
 
