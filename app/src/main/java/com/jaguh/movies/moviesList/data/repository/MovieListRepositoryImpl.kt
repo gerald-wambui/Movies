@@ -80,15 +80,13 @@ class MovieListRepositoryImpl  @Inject constructor(
 			emit(Resource.Loading(true))
 
 			val movieEntity = movieDatabase.movieDao.getMovieById(id)
+// some unknown error in this block
+			emit(
+				Resource.Success(movieEntity.toMovie(movieEntity.category))
+			)
 
-			if (movieEntity != null) {
-				emit(
-					Resource.Success(movieEntity.toMovie(movieEntity.category))
-				)
-
-				emit(Resource.Loading(false))
-				return@flow
-			}
+			emit(Resource.Loading(false))
+			return@flow
 
 			emit(Resource.Error("Error no such movie"))
 
